@@ -1,8 +1,12 @@
 #include <bits/stdc++.h>
+#include "pc.h"
 
 using namespace std;
 
 int main() {
-    std::cout << "Hello, World!" << std::endl;
+    Primes<100> p;
+    for(auto i:p.p){
+        cout << i << ' ';
+    }
     return 0;
 }
