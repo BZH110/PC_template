@@ -12,16 +12,16 @@ namespace pc {
 
     template<int LIMIT>
     class Primes{
+    private:
+        vector<bool> flag;
     public:
         vector<int> p;
-        vector<bool> flag;
         Primes(){
             flag.resize(LIMIT + 1, true);
             flag[0] = flag[1] = false;
             for(int i=2;i<=LIMIT;i++){
-                if(flag[i]){
+                if(flag[i])
                     p.push_back(i);
-                }
                 for(int j=0;j<p.size();j++){
                     flag[p[j] * i] = false;
                     if(i % p[j] == 0)
