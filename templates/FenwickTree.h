@@ -30,18 +30,18 @@ namespace pc {
         }
 
         int get(int x) {
-            x++;
+            x++; // avoid x == -1
             int ret = 0;
             while (x > 0) {
-                x += t[x];
-                x %= MOD;
+                ret += t[x];
+                ret %= MOD;
                 x -= lowbit(x);
             }
             return ret;
         }
 
         void set(int x, int dif) {
-            x++;
+            x++; // avoid x == -1
             while (x < t.size()) {
                 t[x] += dif;
                 t[x] %= MOD;
