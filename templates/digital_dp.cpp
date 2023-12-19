@@ -6,10 +6,9 @@
 using namespace std;
 
 void digital_dp(){
-    string limit; // 数字上限
-    int n_status; // 状态数
-    int mem[limit.size()][n_status]; // 记忆状态，只记录 !is_limit && is_number 的结果，这一部分存在大量重复
-    memset(mem, -1, sizeof(mem));
+    string limit = "A"; // 数字上限
+    int n_status = 1; // 状态数
+    vector<vector<int>> mem(limit.size(), vector<int>(n_status, -1)); // 记忆状态，只记录 !is_limit && is_number 的结果，这一部分存在大量重复
     function<int(int, bool, bool, int, string&)> dfs = [&](int index, bool is_limit, bool is_number, int status, string& limit)->int{
         if(index == limit.size()){
             return is_number ? 1: 0;
