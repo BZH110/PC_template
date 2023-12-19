@@ -18,15 +18,6 @@ namespace pc{
         vector<int> in, out;
         int T = 0;
         int n, k;
-    public:
-        LCA(vector<vector<int>> _g, int root = 0):g(_g){
-            n = g.size();
-            k = log2(n) + 1;
-            up = vector<vector<int>>(n, vector<int>(k));
-            in.resize(n);
-            out.resize(n);
-            build(root, 0);
-        }
 
         void build(int now, int pre){
             in[now] = T++;
@@ -42,6 +33,16 @@ namespace pc{
             out[now] = T++;
         }
 
+    public:
+        LCA(vector<vector<int>> _g, int root = 0):g(_g){
+            n = g.size();
+            k = log2(n) + 1;
+            up = vector<vector<int>>(n, vector<int>(k));
+            in.resize(n);
+            out.resize(n);
+            build(root, 0);
+        }
+
         bool is_ancestor(int x, int y){ // x is ancestor of y
             return in[x] <= in[y] && out[x] >= out[y];
         }
@@ -49,9 +50,8 @@ namespace pc{
         int get(int x, int y){
             if(is_ancestor(x, y)) return x;
             for(int i = up[0].size()-1;i>=0;i--){
-                if(!is_ancestor(up[x][i], y)){
+                if(!is_ancestor(up[x][i], y))
                     x = up[x][i];
-                }
             }
             return up[x][0];
         }

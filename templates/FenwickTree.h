@@ -13,12 +13,10 @@ namespace pc {
     private:
         vector<int> &a;
         vector<int> t;
-
         void build() {
             for (int i = 0; i < a.size(); i++)
                 set(i, a[i]);
         }
-
     public:
         FenwickTree(vector<int> _a) : a(_a) {
             t.resize(a.size() + 1, 0);
