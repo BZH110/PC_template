@@ -8,6 +8,23 @@
 #include "FenwickTree.h"
 #include "Prime.h"
 #include "SegmentTree.h"
+#include "LCA.h"
+
+using namespace std;
+
+#define int long long
+#define rep(i,a,b) for(int i=a;i<b;i++)
+// avoid hash hack
+// #define unordered_set set
+// #define unordered_map map
+
+using ll = long long;
+using ull = unsigned long long;
+using vi = vector<int>;
+using vvi = vector<vector<int>>;
+using vvvi = vector<vector<vector<int>>>;
+using pii = pair<int,int>;
+using vpii = vector<pair<int,int>>;
 
 using namespace pc;
 
