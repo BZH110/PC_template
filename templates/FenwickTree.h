@@ -11,7 +11,7 @@ namespace pc {
     template<ll MOD = LLONG_MAX>
     class FenwickTree {
     private:
-        vector<int> &a;
+        vector<int> a;
         vector<int> t;
         void build() {
             for (int i = 0; i < a.size(); i++)

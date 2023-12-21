@@ -9,6 +9,7 @@
 #include "Prime.h"
 #include "SegmentTree.h"
 #include "LCA.h"
+#include "Fraction.h"
 
 using namespace std;
 
