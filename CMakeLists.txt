@@ -15,4 +15,5 @@ add_executable(PC_template
         templates/Trie.h
         templates/LCA.h
         templates/Flow.h
+        templates/Fraction.h
 )

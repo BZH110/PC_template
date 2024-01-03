@@ -10,6 +10,7 @@
 #include "SegmentTree.h"
 #include "LCA.h"
 #include "Flow.h"
+#include "Fraction.h"
 
 using namespace std;
 
