@@ -15,6 +15,12 @@ namespace pc {
     };
 
     template <int MOD = LLONG_MAX>
+    class MCMF {
+    public:
+
+    };
+
+    template <int MOD = LLONG_MAX>
     class MaxFlow {
     public:
         int n, m, s, t;

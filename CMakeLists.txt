@@ -16,4 +16,5 @@ add_executable(PC_template
         templates/LCA.h
         templates/Flow.h
         templates/Fraction.h
+        templates/Bit.h
 )
