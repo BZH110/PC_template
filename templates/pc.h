@@ -11,6 +11,8 @@
 #include "LCA.h"
 #include "Flow.h"
 #include "Fraction.h"
+#include "ShortestPath.h"
+#include "Bit.h"
 
 using namespace std;
 
@@ -30,5 +32,6 @@ using pii = pair<int,int>;
 using vpii = vector<pair<int,int>>;
 
 using namespace pc;
+using namespace pc1;
 
 #endif //PC_TEMPLATE_PC_H

@@ -3,9 +3,11 @@
 
 using namespace std;
 
+
 void test() {
-    MaxFlow mf;
-    cout << mf.dinic() << endl;
+    SPFA t;
+    t.run();
+    t.output();
 }
 
 signed main() {

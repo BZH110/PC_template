@@ -17,4 +17,5 @@ add_executable(PC_template
         templates/Flow.h
         templates/Fraction.h
         templates/Bit.h
+        templates/ShortestPath.h
 )
