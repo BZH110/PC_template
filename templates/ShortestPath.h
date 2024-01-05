@@ -20,13 +20,13 @@ namespace pc1 {
         vector<int> head;
         vector<Edge> edges;
         vector<long long> dis;
-        vector<int> inq;
+        vector<int> inq, cnt;
 
         SPFA() {
             input();
         }
 
-        void run() {
+        bool run() {
             queue<int> q;
             dis[s] = 0;
             q.push(s);
@@ -42,10 +42,14 @@ namespace pc1 {
                         if(!inq[to]) {
                             q.push(to);
                             inq[to] = 1;
+                            cnt[to] = cnt[now] + 1;
+                            if(cnt[to] >= n)
+                                return false;
                         }
                     }
                 }
             }
+            return true;
         }
 
         void output() {
@@ -60,6 +64,7 @@ namespace pc1 {
             edges.resize(m);
             dis.resize(n+1, LLONG_MAX / 2);  // note: overflow
             inq.resize(n+1, 0);
+            cnt.resize(n+1, 0);
             int u, v, w;
             for(int i=0;i<m;i++) {
                 cin >> u >> v >> w;
