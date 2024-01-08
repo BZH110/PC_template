@@ -17,7 +17,105 @@ namespace pc {
     template <int MOD = LLONG_MAX>
     class MCMF {
     public:
+        int n, m, s, t;
+        vector<int> head;
+        vector<Edge> edges;
+        vector<long long> dis;
+        vector<int> inq, cnt, h, pre;
 
+        MCMF(){
+            input();
+        }
+
+        void input() {
+            cin >> n >> m >> s >> t;
+            head.resize(n + 1, -1); // vertex index start from 1
+            edges.resize(2 * m);
+            dis.resize(n + 1, LLONG_MAX);
+            h.resize(n + 1, LLONG_MAX);
+            inq.resize(n + 1);
+            cnt.resize(n + 1);
+
+            int u, v, w, c = 1;
+            for(int i = 0; i < 2 * m; i+=2) {
+                cin >> u >> v >> w >> c;
+                edges[i] = {u, v, w, c, head[u]};
+                edges[i+1] = {v, u, 0, -c, head[v]};
+                head[u] = i;
+                head[v] = i + 1;
+            }
+        }
+
+        bool spfa() {
+            queue<int> q;
+            h[s] = 0;
+            q.push(s);
+            inq[s] = 1;
+            while(!q.empty()) {
+                auto now = q.front();
+                q.pop();
+                inq[now] = 0;
+                for(auto eg = head[now]; eg >= 0; eg = edges[eg].next) {
+                    int to = edges[eg].to, w = edges[eg].w, c = edges[eg].c;
+                    if(w > 0 && h[to] > h[now] + c) {
+                        h[to] = h[now] + c;
+                        if(!inq[to]) {
+                            q.push(to);
+                            inq[to] = 1;
+                            cnt[to] = cnt[now] + 1;
+                            if(cnt[to] >= n)
+                                return false;
+                        }
+                    }
+                }
+            }
+            return true;
+        }
+
+        using pii = pair<int, int>;
+
+        bool dijk(){
+            auto cmp = [](auto& a, auto& b){ return a.first > b.first; };
+            priority_queue<pii, vector<pii>, decltype(cmp)> q(cmp);
+            vector<int> visit(n+1, 0);
+            fill(dis.begin(), dis.end(), LLONG_MAX);
+            dis[s] = 0;
+            q.push({0, s});
+            while(!q.empty()){
+                int u = q.top().second;
+                q.pop();
+                if(visit[u])
+                    continue;
+                visit[u] = 1;
+                for(int i=head[u]; i>=0; i = edges[i].next){
+                    int v = edges[i].to, nc = edges[i].c + h[u] - h[v];
+                    if(edges[i].w > 0 && dis[v] > dis[u] + nc){
+                        dis[v] = dis[u] + nc;
+                        pre[v] = i;
+                        q.push({dis[v], v});
+                    }
+                }
+            }
+            return dis[t] != LLONG_MAX;
+        }
+
+        pair<int,int> run(){
+            if(!spfa()) // 求初始势能
+                return {-1, -1};
+            int maxf = 0, minc = 0;
+            while(dijk()){
+                long long minf = LLONG_MAX;
+                for(int i = 1; i <= n; i++) h[i] += dis[i];
+                for(int i = t; i != s; i = edges[pre[i]].from) minf = min(minf, edges[pre[i]].w);
+                for(int i = t; i != s; i = edges[pre[i]].from) {
+                    edges[pre[i]].w -= minf;
+                    edges[pre[i] ^ 1].w += minf;
+                }
+                maxf += minf;
+                minc += minf * h[t];
+            }
+            return {maxf, minc};
+        }
     };
 
     template <int MOD = LLONG_MAX>
