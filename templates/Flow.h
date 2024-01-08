@@ -22,6 +22,7 @@ namespace pc {
         vector<Edge> edges;
         vector<long long> dis;
         vector<int> inq, cnt, h, pre;
+        int maxf = 0, minc = 0;
 
         MCMF(){
             input();
@@ -99,10 +100,10 @@ namespace pc {
             return dis[t] != LLONG_MAX;
         }
 
-        pair<int,int> run(){
+        void run(){
             if(!spfa()) // 求初始势能
-                return {-1, -1};
-            int maxf = 0, minc = 0;
+                return;
+            maxf = minc = 0;
             while(dijk()){
                 long long minf = LLONG_MAX;
                 for(int i = 1; i <= n; i++) h[i] += dis[i];
@@ -114,7 +115,6 @@ namespace pc {
                 maxf += minf;
                 minc += minf * h[t];
             }
-            return {maxf, minc};
         }
     };
 
