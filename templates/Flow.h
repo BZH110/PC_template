@@ -36,6 +36,7 @@ namespace pc {
             h.resize(n + 1, LLONG_MAX);
             inq.resize(n + 1);
             cnt.resize(n + 1);
+            pre.resize(n + 1);
 
             int u, v, w, c = 1;
             for(int i = 0; i < 2 * m; i+=2) {
