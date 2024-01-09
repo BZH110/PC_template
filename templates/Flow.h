@@ -14,6 +14,92 @@ namespace pc {
         int from, to, w, c = 1, next = -1;
     };
 
+    class MCMF2{
+    public:
+#ifndef INF
+        long long INF = LLONG_MAX / 2;
+#endif
+        int n, m, s, t;
+        vector<int> head, cur;
+        vector<Edge> edges;
+        vector<long long> dis;
+        vector<int> vis;
+        int maxf = 0, minc = 0;
+
+        MCMF2(){
+            input();
+        }
+
+        void add(int u, int v, int w, int c){
+            edges.push_back({u, v, w, c, head[u]});
+            head[u] = edges.size() - 1;
+            edges.push_back({v, u, 0, -c, head[v]});
+            head[v] = edges.size() - 1;
+        }
+
+        void input() {
+            cin >> n >> m >> s >> t;
+            head.resize(n + 1, -1); // vertex index start from 1
+            dis.resize(n + 1, INF);
+            vis.resize(n + 1, 0);
+
+            int u, v, w, c = 1;
+            for(int i = 0; i < m; i++) {
+                cin >> u >> v >> w >> c;
+                add(u, v, w, c);
+                add(v, u, 0, -c);
+            }
+        }
+
+        bool spfa(){
+            fill(dis.begin(), dis.end(), INF);
+            fill(vis.begin(), vis.end(), 0);
+            cur = head; /* 当前弧优化 */
+            queue<int> q;
+            dis[s]=0;
+            q.push(s);
+            while(!q.empty()){
+                int now=q.front();
+                q.pop();
+                vis[now] = 0;
+                for(int i=head[now]; i >= 0; i=edges[i].next){
+                    int v=edges[i].to, w = edges[i].w, c = edges[i].c;
+                    if(dis[v] > dis[now] + edges[i].c && w){
+                        dis[v] = dis[now] + c;
+                        if(!vis[v]){
+                            vis[v]=1;
+                            q.push(v);
+                        }
+                    }
+                }
+            }
+            return dis[t] != INF;
+        }
+
+        int dfs(int u, int t, int flow) {
+            if (u == t) return flow;
+            vis[u] = 1;
+            int ans = 0;
+            for (int& i = cur[u] /* 当前弧优化 */ ; i >= 0 && ans < flow; i = edges[i].next) {
+                int v = edges[i].to, w = edges[i].w, c = edges[i].c;
+                if (!vis[v] && w && dis[v] == dis[u] + c) {
+                    int x = dfs(v, t, std::min(w, flow - ans));
+                    if (x) minc += x * c, edges[i].w -= x, edges[i ^ 1].w += x, ans += x;
+                }
+            }
+            vis[u] = 0;
+            return ans;
+        }
+
+        void run(){
+            maxf = minc = 0;
+            while (spfa()) {
+                int x;
+                while ((x = dfs(s, t, INF))) maxf += x;
+            }
+        }
+    };
+
     template <int MOD = LLONG_MAX>
     class MCMF {
     public:
@@ -26,6 +112,11 @@ namespace pc {
 
         MCMF(){
             input();
+        }
+
+        void add(int u, int v, int w, int c){
+            edges.push_back({u, v, w, c, head[u]});
+            head[u] = edges.size() - 1;
         }
 
         void input() {
