@@ -10,22 +10,28 @@
 namespace pc{
     using namespace std;
 
+    template<int size>
     struct Node{
-        unordered_map<char, Node*> m;
+        Node* m[size];
         int end = 0;
+        Node(){
+            for(int i=0;i<size;i++)
+                m[i] = nullptr;
+        }
     };
 
+    template<int size, char base>
     class Trie{
     public:
-        Node* root;
-        Trie(){
-            root = new Node();
+        Node<size>* root;
+        Trie() {
+            root = new Node<size>();
         }
         void add(string s){
             auto now = root;
             for(auto c:s){
-                if(!now->m.count(c))
-                    now->m[c] = new Node();
+                if(!now->m[c - base])
+                    now->m[c] = new Node<size>();
                 now = now->m[c];
             }
             now->end++;
