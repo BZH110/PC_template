@@ -5,8 +5,6 @@
 #ifndef SHORTESTPATH_H
 #define SHORTESTPATH_H
 
-#include <bits/stdc++.h>
-
 namespace pc1 {
     using namespace std;
 

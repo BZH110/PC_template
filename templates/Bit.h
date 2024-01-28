@@ -5,8 +5,6 @@
 #ifndef BIT_H
 #define BIT_H
 
-#include <bits/stdc++.h>
-
 namespace pc {
 
     // 获取最低的一个bit

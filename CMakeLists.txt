@@ -18,4 +18,5 @@ add_executable(PC_template
         templates/Fraction.h
         templates/Bit.h
         templates/ShortestPath.h
+        templates/SafeCal.h
 )

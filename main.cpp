@@ -3,11 +3,11 @@
 
 using namespace std;
 
-
 void test() {
-    SPFA t;
-    t.run();
-    t.output();
+    constexpr int mod = 1e9+7;
+    N<mod> n(1);
+    n /= 2;
+    cout << n.x << endl;
 }
 
 signed main() {

@@ -13,6 +13,7 @@
 #include "Fraction.h"
 #include "ShortestPath.h"
 #include "Bit.h"
+#include "SafeCal.h"
 
 using namespace std;
 
