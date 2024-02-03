@@ -31,8 +31,26 @@ namespace pc{
             auto now = root;
             for(auto c:s){
                 if(!now->m[c - base])
-                    now->m[c] = new Node<size>();
-                now = now->m[c];
+                    now->m[c - base] = new Node<size>();
+                now = now->m[c - base];
+            }
+            now->end++;
+        }
+    };
+    template<int size>
+    class BiTire{
+    public:
+        Node<2>* root;
+        BiTire() {
+            root = new Node<2>();
+        }
+        void add(int x){
+            auto now = root;
+            for(int i = size - 1; i >= 0; i--){
+                int next = ((1 << i) & x) ? 1 : 0;
+                if(!now->m[next])
+                    now->m[next] = new Node<2>();
+                now = now->m[next];
             }
             now->end++;
         }

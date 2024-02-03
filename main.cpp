@@ -4,10 +4,11 @@
 using namespace std;
 
 void test() {
-    constexpr int mod = 1e9+7;
-    N<mod> n(1);
-    n /= 2;
-    cout << n.x << endl;
+    vector<int> data(500005, 0);
+    MaxAddSegTree tree(data);
+    tree.modify(0, 1, 2);
+    tree.modify(1, 3, 2);
+    cout << tree.query(1, 3);
 }
 
 signed main() {
