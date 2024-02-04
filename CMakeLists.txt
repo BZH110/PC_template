@@ -19,4 +19,5 @@ add_executable(PC_template
         templates/Bit.h
         templates/ShortestPath.h
         templates/SafeCal.h
+        templates/matrix.h
 )
