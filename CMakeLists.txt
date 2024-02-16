@@ -20,4 +20,5 @@ add_executable(PC_template
         templates/ShortestPath.h
         templates/SafeCal.h
         templates/matrix.h
+        templates/exmath.h
 )
