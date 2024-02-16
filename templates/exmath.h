@@ -29,7 +29,7 @@ namespace pc {
 
     ll C(int n, int m, int mod) { // choose m from n
         if(2 * m > n)
-            return c(n, n-m, mod);
+            return C(n, n-m, mod);
         ll ans = 1, ans2 = 1;
         for(int i=n;i>n-m;i--)
             ans = (ans * i) % mod;
