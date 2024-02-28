@@ -21,4 +21,5 @@ add_executable(PC_template
         templates/SafeCal.h
         templates/matrix.h
         templates/exmath.h
+        templates/Zfunc.h
 )

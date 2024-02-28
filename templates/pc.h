@@ -14,6 +14,7 @@
 #include "ShortestPath.h"
 #include "Bit.h"
 #include "SafeCal.h"
+#include "Zfunc.h"
 
 using namespace std;
 
