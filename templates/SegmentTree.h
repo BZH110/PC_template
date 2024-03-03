@@ -199,6 +199,85 @@ using ll = long long;
         }
     };
 
+    // 单点更新线段树 通用模板
+    template <typename T>
+    class SegmentTree {
+    public:
+        using F = function<T(T &, T &)>;
+        int n;
+        vector<T> dat;
+        T e;
+        F query_func;
+        F update_func;
+
+        SegmentTree(vector<T> a, F query_func, F update_func, T e) : n(a.size()), query_func(query_func), update_func(update_func), e(e) {
+            if (n == 0) {
+                a.push_back(e);
+                n++;
+            }
+            dat.resize(4 * n + 5);
+            init(0, 0, n - 1, a);
+        }
+
+        void init(int k, int l, int r, vector<T> &a) {
+            if (r == l) {
+                dat[k] = a[l];
+            } else {
+                int lch = 2 * k + 1, rch = 2 * k + 2;
+                init(lch, l, (l + r) / 2, a);
+                init(rch, (l + r) / 2 + 1, r, a);
+                dat[k] = query_func(dat[lch], dat[rch]);
+            }
+        }
+
+        void update(int k, T a, int v, int l, int r) {
+            if (r == l) {
+                dat[v] = update_func(dat[v], a);
+            } else {
+                if (k <= (l + r) / 2)
+                    update(k, a, 2 * v + 1, l, (l + r) / 2);
+                else {
+                    update(k, a, 2 * v + 2, (l + r) / 2 + 1, r);
+                }
+                dat[v] = query_func(dat[v * 2 + 1], dat[v * 2 + 2]);
+            }
+        }
+
+        void update(int k, T a) {
+            update(k, a, 0, 0, n - 1);
+        }
+
+        T query(int a, int b, int k, int l, int r) {
+            if (r < a || b < l) {
+                return e;
+            }
+            if (a <= l && r <= b) {
+                return dat[k];
+            } else {
+                T ul = query(a, b, k * 2 + 1, l, (l + r) / 2);
+                T ur = query(a, b, k * 2 + 2, (l + r) / 2 + 1, r);
+                return query_func(ul, ur);
+            }
+        }
+
+        T query(int a, int b) {
+            return query(a, b, 0, 0, n - 1);
+        }
+
+        // maybe useless
+        int find(int a, int b, int k, int l, int r, int x) {
+            if (dat[k] < x || r < a || b < l) return -1;
+            if (l == r) {
+                if (dat[k] >= x)
+                    return l;
+                else
+                    return -1;
+            }
+            int rv = find(a, b, 2 * k + 2, (l + r) / 2 + 1, r, x);
+            if (rv != -1) return rv;
+            return find(a, b, 2 * k + 1, l, (l + r) / 2, x);
+        }
+    };
 }
 
 #endif //PC_TEMPLATE_SEGMENTTREE_H
