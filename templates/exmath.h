@@ -27,7 +27,7 @@ namespace pc {
         return ret;
     }
 
-    ll C(int n, int m, int mod) { // choose m from n
+    ll C(int n, int m, int mod = INT_MAX) { // choose m from n
         if(2 * m > n)
             return C(n, n-m, mod);
         ll ans = 1, ans2 = 1;
@@ -38,7 +38,7 @@ namespace pc {
         return (ans * mypow(ans2, mod-2, mod)) % mod;
     }
 
-    ll A(int n, int m, int mod) {
+    ll A(int n, int m, int mod = INT_MAX) {
         ll ans = 1;
         for(int i=n;i>n-m;i--)
             ans = (ans * i) % mod;
