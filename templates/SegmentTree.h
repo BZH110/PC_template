@@ -200,6 +200,7 @@ using ll = long long;
     };
 
     // 单点更新线段树 通用模板
+    // usage: https://atcoder.jp/contests/abc343/submissions/50872036
     template <typename T>
     class SegmentTree {
     public:
