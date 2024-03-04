@@ -12,7 +12,7 @@
 namespace pc{
     using namespace std;
     class LCA{
-    private:
+    public:
         vector<vector<int>> g;
         vector<vector<int>> up;
         vector<int> in, out;
@@ -33,7 +33,6 @@ namespace pc{
             out[now] = T++;
         }
 
-    public:
         LCA(vector<vector<int>> _g, int root = 0):g(_g){
             n = g.size();
             k = log2(n) + 1;
