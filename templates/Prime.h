@@ -23,6 +23,8 @@ namespace pc {
                 if(flag[i])
                     p.push_back(i);
                 for(int j=0;j<p.size();j++){
+                    if(p[j] * i > LIMIT)
+                        break;
                     flag[p[j] * i] = false;
                     if(i % p[j] == 0)
                         break;

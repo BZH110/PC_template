@@ -22,4 +22,5 @@ add_executable(PC_template
         templates/matrix.h
         templates/exmath.h
         templates/Zfunc.h
+        templates/DSU.h
 )
