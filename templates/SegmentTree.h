@@ -216,7 +216,7 @@ using ll = long long;
                 a.push_back(e);
                 n++;
             }
-            dat.resize(4 * n + 5, e);
+            dat.resize(4 * n + 5);
             init(0, 0, n - 1, a);
         }
 
