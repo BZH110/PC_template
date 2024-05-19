@@ -23,4 +23,5 @@ add_executable(PC_template
         templates/exmath.h
         templates/Zfunc.h
         templates/DSU.h
+        templates/SCC.h
 )
