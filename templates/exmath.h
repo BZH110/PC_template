@@ -28,13 +28,15 @@ namespace pc {
     }
 
     ll C(int n, int m, int mod = INT_MAX) { // choose m from n
+        if(n < m)
+            return 0;
         if(2 * m > n)
             return C(n, n-m, mod);
         ll ans = 1, ans2 = 1;
         for(int i=n;i>n-m;i--)
-            ans = (ans * i) % mod;
+            ans = (ans * (i % mod)) % mod;
         for(int i=1;i<=m;i++)
-            ans2 = (ans2 * i) % mod;
+            ans2 = (ans2 * (i % mod)) % mod;
         return (ans * mypow(ans2, mod-2, mod)) % mod;
     }
 
