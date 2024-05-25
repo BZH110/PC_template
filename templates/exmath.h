@@ -43,7 +43,7 @@ namespace pc {
     ll A(int n, int m, int mod = INT_MAX) {
         ll ans = 1;
         for(int i=n;i>n-m;i--)
-            ans = (ans * i) % mod;
+            ans = (ans * (i % mod)) % mod;
         return ans;
     }
 }
