@@ -24,4 +24,5 @@ add_executable(PC_template
         templates/Zfunc.h
         templates/DSU.h
         templates/SCC.h
+        templates/hash.h
 )
