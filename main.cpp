@@ -4,10 +4,8 @@
 using namespace std;
 
 void test() {
-    Zfunc t("aabaa");
-    for(auto i:t.z){
-        cout << i << " ";
-    }
+    N n(1);
+    cout << n << endl;
 }
 
 class MyType {

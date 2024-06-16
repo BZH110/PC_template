@@ -21,6 +21,11 @@ namespace pc{
         N operator/(N n){return N((((x * mypow(n.x, MOD - 2, MOD)) % MOD) + MOD) % MOD);}
         void operator/=(N n){x = (((x * mypow(n.x, MOD - 2, MOD)) % MOD) + MOD) % MOD;}
 
+        friend ostream& operator<< (ostream& out, const N n){
+            out << n.x;
+            return out;
+        }
+
         ll mypow(ll a, ll b, ll mod = LLONG_MAX) {
             if (b == 0)
                 return 1;
