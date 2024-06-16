@@ -24,10 +24,12 @@ namespace pc{
     class Trie{
     public:
         Node<size>* root;
+
         Trie() {
             root = new Node<size>();
         }
-        void add(string s){
+
+        void add(string& s){
             auto now = root;
             for(auto c:s){
                 if(!now->m[c - base])
@@ -36,14 +38,26 @@ namespace pc{
             }
             now->end++;
         }
+
+        bool find(string& s){
+            auto now = root;
+            for(auto c:s){
+                if(!now->m[c - base])
+                    return false;
+                now = now->m[c - base];
+            }
+            return now->end > 0;
+        }
     };
     template<int size>
     class BiTire{
     public:
         Node<2>* root;
+
         BiTire() {
             root = new Node<2>();
         }
+
         void add(int x){
             auto now = root;
             for(int i = size - 1; i >= 0; i--){
@@ -53,6 +67,17 @@ namespace pc{
                 now = now->m[next];
             }
             now->end++;
+        }
+
+        bool find(int x){
+            auto now = root;
+            for(int i = size - 1; i >= 0; i--){
+                int next = ((1 << i) & x) ? 1 : 0;
+                if(!now->m[next])
+                    return false;
+                now = now->m[next];
+            }
+            return now->end > 0;
         }
     };
 }
