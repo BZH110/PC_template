@@ -48,6 +48,16 @@ namespace pc{
             }
             return now->end > 0;
         }
+
+        bool find_pre(string& s){
+            auto now = root;
+            for(auto c:s){
+                if(!now->m[c - base])
+                    return false;
+                now = now->m[c - base];
+            }
+            return true;
+        }
     };
     template<int size>
     class BiTire{
@@ -78,6 +88,17 @@ namespace pc{
                 now = now->m[next];
             }
             return now->end > 0;
+        }
+
+        bool find_pre(int x){
+            auto now = root;
+            for(int i = size - 1; i >= 0; i--){
+                int next = ((1 << i) & x) ? 1 : 0;
+                if(!now->m[next])
+                    return false;
+                now = now->m[next];
+            }
+            return true;
         }
     };
 }
