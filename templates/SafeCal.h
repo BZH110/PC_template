@@ -26,7 +26,7 @@ namespace pc{
             return out;
         }
 
-        ll mypow(ll a, ll b, ll mod = LLONG_MAX) {
+        long long mypow(long long a, long long b, long long mod = LLONG_MAX) {
             if (b == 0)
                 return 1;
             if (b % 2 == 0)
