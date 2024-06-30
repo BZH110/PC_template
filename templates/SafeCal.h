@@ -11,7 +11,9 @@ namespace pc{
     class N{
     public:
         long long x;
-        N(long long _x): x(_x){}
+        N(long long _x){
+            x = (_x % MOD + MOD) % MOD;
+        }
         N operator+(N n){return N((((x + n.x) % MOD) + MOD) % MOD);}
         void operator+=(N n){x = (((x + n.x) % MOD) + MOD) % MOD;}
         N operator-(N n){return N((((x - n.x) % MOD) + MOD) % MOD);}
@@ -20,6 +22,15 @@ namespace pc{
         void operator*=(N n){x = (((x * n.x) % MOD) + MOD) % MOD;}
         N operator/(N n){return N((((x * mypow(n.x, MOD - 2, MOD)) % MOD) + MOD) % MOD);}
         void operator/=(N n){x = (((x * mypow(n.x, MOD - 2, MOD)) % MOD) + MOD) % MOD;}
+
+        N operator+(long long n){return *this + N(n);}
+        void operator+=(long long n){*this += N(n);}
+        N operator-(long long n){return *this - N(n);}
+        void operator-=(long long n){*this -= N(n);}
+        N operator*(long long n){return *this * N(n);}
+        void operator*=(long long n){*this *= N(n);}
+        N operator/(long long n){return *this / N(n);}
+        void operator/=(long long n){*this /= N(n);}
 
         friend ostream& operator<< (ostream& out, const N n){
             out << n.x;
