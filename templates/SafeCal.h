@@ -32,6 +32,9 @@ namespace pc{
         N operator/(long long n){return *this / N(n);}
         void operator/=(long long n){*this /= N(n);}
 
+        bool operator==(N n) {return this->x == n.x;}
+        bool operator==(long long n) {return this->x == n;}
+
         friend ostream& operator<< (ostream& out, const N n){
             out << n.x;
             return out;
