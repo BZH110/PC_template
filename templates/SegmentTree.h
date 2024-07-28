@@ -15,9 +15,9 @@ using ll = long long;
     // 局部增加，局部查询最值
     class MaxAddSegTree{
     public:
-        vector<ll>& data;
+        vector<ll> data;
         vector<ll> t, mark;
-        MaxAddSegTree(vector<ll>& a):data(a){
+        MaxAddSegTree(vector<ll> a):data(a){
             ll n = data.size();
             t.resize(4 * n + 5, 0);
             mark.resize(4 * n + 5, 0);
@@ -76,9 +76,9 @@ using ll = long long;
     // 局部修改覆盖，局部查询最值
     class MaxModifySegTree{
     public:
-        vector<ll>& data;
+        vector<ll> data;
         vector<ll> t, mark;
-        MaxModifySegTree(vector<ll>& a):data(a){
+        MaxModifySegTree(vector<ll> a):data(a){
             ll n = data.size();
             t.resize(4 * n + 5, 0);
             mark.resize(4 * n + 5, LLONG_MIN);
@@ -137,7 +137,7 @@ using ll = long long;
     template<ll MOD = LLONG_MAX>
     class SumSegTree{
     private:
-        vector<ll>& data;
+        vector<ll> data;
         vector<ll> t, mark;
         void build(ll o, ll l, ll r){
             if(l == r){
@@ -150,7 +150,7 @@ using ll = long long;
             t[o] = (t[2 * o] + t[2 * o + 1]) % MOD;
         }
     public:
-        SumSegTree(vector<ll>& a):data(a) {
+        SumSegTree(vector<ll> a):data(a) {
             ll n = data.size();
             t.resize(4 * n + 5, 0);
             mark.resize(4 * n + 5, 0);

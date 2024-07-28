@@ -25,4 +25,5 @@ add_executable(PC_template
         templates/DSU.h
         templates/SCC.h
         templates/hash.h
+        templates/KMP.h
 )
