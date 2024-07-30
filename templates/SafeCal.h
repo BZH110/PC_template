@@ -41,8 +41,11 @@ namespace pc{
         }
 
         long long mypow(long long a, long long b, long long mod = LLONG_MAX) {
+            a %= mod;
             if (b == 0)
                 return 1;
+            if (b == 1)
+                return a;
             if (b % 2 == 0)
                 return mypow((a * a) % mod, b / 2, mod);
             return (a * mypow((a * a) % mod, b / 2, mod)) % mod;
