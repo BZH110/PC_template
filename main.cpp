@@ -35,10 +35,13 @@ public:
 };
 
 signed main() {
-    MyType a(2), b(2);
-    set<MyType> mm;
-    mm.insert(a);
-    cout << mm.count(b) << endl;
-    cout << (a == b) << endl;
+    for(int i=0;i<1e5;i++){
+        cout << i * 10 << " ";
+    }
+    cout << endl;
+    for(int i=0;i<1e5;i++){
+        cout << i + 2 << " ";
+    }
+    cout << endl;
     return 0;
 }

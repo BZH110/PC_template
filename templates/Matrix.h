@@ -5,17 +5,19 @@
 #ifndef MATRIX_H
 #define MATRIX_H
 
+#include "pc.h"
+
 namespace pc {
     template<int MOD>
     class matrix {
     public:
-        vvi data;
+        vector<vector<long long>> data;
         int n;
-        matrix(vvi a):data(a), n(a.size()) {
+        matrix(vector<vector<long long>> a):data(a), n(a.size()) {
 
         }
         matrix(int _n):n(_n) {
-            data.resize(n, vi(n));
+            data.resize(n, vector<long long>(n));
         }
         matrix operator*(matrix b) {
             matrix ret(n);
@@ -36,7 +38,7 @@ namespace pc {
     template<int MOD>
     matrix<MOD> mpow(matrix<MOD> a, int b) {
         if (b == 0)
-            return matrix<MOD>(vvi{{1,0},{0,1}});
+            return matrix<MOD>(vector<vector<long long>>{{1,0},{0,1}});
         if (b % 2 == 0)
             return mpow((a * a), b / 2);
         return a * mpow((a * a), b / 2);

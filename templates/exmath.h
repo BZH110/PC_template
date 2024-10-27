@@ -47,6 +47,10 @@ namespace pc {
             ans = (ans * (i % mod)) % mod;
         return ans;
     }
+
+    // 将n个不同的小球随机放到m个不同盒子中，且每个盒子都不为空的问题，使用组合数学中的“第二类斯特林数”和“排列数”来解决
+    // ref: https://oi-wiki.org/math/combinatorics/stirling/
+
 }
 
 #endif //EXMATH_H
