@@ -37,8 +37,12 @@ namespace pc {
     // 矩阵快速幂
     template<int MOD>
     matrix<MOD> mpow(matrix<MOD> a, int b) {
-        if (b == 0)
-            return matrix<MOD>(vector<vector<long long>>{{1,0},{0,1}});
+        if (b == 0) {
+            matrix<MOD> ret(a.n);
+            for(int i=0;i<a.n;i++)
+                ret.data[i][i] = 1;
+            return ret;
+        }
         if (b % 2 == 0)
             return mpow((a * a), b / 2);
         return a * mpow((a * a), b / 2);
