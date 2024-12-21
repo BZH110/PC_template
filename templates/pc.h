@@ -18,7 +18,7 @@
 
 using namespace std;
 
-#define int long long
+// #define int long long
 #define rep(i,a,b) for(int i=a;i<b;i++)
 #define per(i,a,b) for(int i=a;i>b;i--)
 // avoid hash hack

@@ -32,6 +32,25 @@ namespace pc{
         N operator/(long long n){return *this / N(n);}
         void operator/=(long long n){*this /= N(n);}
 
+        N operator+(int n){return *this + N(n);}
+        void operator+=(int n){*this += N(n);}
+        N operator-(int n){return *this - N(n);}
+        void operator-=(int n){*this -= N(n);}
+        N operator*(int n){return *this * N(n);}
+        void operator*=(int n){*this *= N(n);}
+        N operator/(int n){return *this / N(n);}
+        void operator/=(int n){*this /= N(n);}
+
+        friend N operator+(int ln, N rn){return N(ln) + rn;}
+        friend N operator-(int ln, N rn){return N(ln) - rn;}
+        friend N operator*(int ln, N rn){return N(ln) * rn;}
+        friend N operator/(int ln, N rn){return N(ln) / rn;}
+
+        friend N operator+(long long ln, N rn){return N(ln) + rn;}
+        friend N operator-(long long ln, N rn){return N(ln) - rn;}
+        friend N operator*(long long ln, N rn){return N(ln) * rn;}
+        friend N operator/(long long ln, N rn){return N(ln) / rn;}
+
         bool operator==(N n) {return this->x == n.x;}
         bool operator==(long long n) {return this->x == n;}
 

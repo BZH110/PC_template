@@ -7,8 +7,6 @@
 
 #include<bits/stdc++.h>
 
-#define int long long
-
 namespace pc{
     using namespace std;
     class LCA{
