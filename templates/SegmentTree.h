@@ -13,11 +13,13 @@ using ll = long long;
 
     // mallain max value
     // 局部增加，局部查询最值
+    template<typename F>
     class MaxAddSegTree{
     public:
         vector<ll> data;
         vector<ll> t, mark;
-        MaxAddSegTree(vector<ll> a):data(a){
+        F f;
+        MaxAddSegTree(vector<ll> a, F f):data(a), f(f){
             ll n = data.size();
             t.resize(4 * n + 5, 0);
             mark.resize(4 * n + 5, 0);
@@ -31,7 +33,7 @@ using ll = long long;
             ll m = (l + r) / 2;
             build(2 * o, l, m);
             build(2 * o + 1, m + 1, r);
-            t[o] = max(t[2 * o], t[2 * o + 1]);
+            t[o] = f(t[2 * o], t[2 * o + 1]);
         }
         void modify(ll l, ll r, ll dif){
             modify(1, 0, (ll)data.size() - 1, l, r, dif);
@@ -48,7 +50,7 @@ using ll = long long;
             ll m = (lo + ro) / 2;
             modify(2 * o, lo, m, l, r, dif);
             modify(2 * o + 1, m+1, ro, l, r, dif);
-            t[o] = max(t[2*o], t[2*o+1]);
+            t[o] = f(t[2*o], t[2*o+1]);
         }
         ll query(ll l, ll r){
             return query(1, 0, (ll)data.size() - 1, l, r);
@@ -60,7 +62,7 @@ using ll = long long;
                 return LLONG_MIN;
             push_down(o);
             ll m = (lo + ro) / 2;
-            return max(query(2 * o, lo, m, l, r), query(2 * o + 1, m+1, ro, l, r));
+            return f(query(2 * o, lo, m, l, r), query(2 * o + 1, m+1, ro, l, r));
         }
 
         void push_down(ll o){
