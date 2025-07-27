@@ -11,13 +11,12 @@ using namespace std;
 
 class LinearBasis {
 public:
-    vector<int> base;
+    int base[61]{0};
 
-    LinearBasis(const vector<int>& a) {
+    LinearBasis(const vector<long long>& a) {
         int n = a.size();
-        base.resize(61);
         for(int i=0;i<n;i++){
-            int now = a[i];
+            auto now = a[i];
             for(int j=60;j>=0;j--){
                 if((1LL << j) > now)
                     continue;
@@ -31,8 +30,8 @@ public:
         }
     }
 
-    int GetHigh() {
-        int ans = 0;
+    long long GetHigh() {
+        long long ans = 0;
         for(int j=60;j>=0;j--){
             if((ans & (1LL << j)) == 0) {
                 ans ^= base[j];
